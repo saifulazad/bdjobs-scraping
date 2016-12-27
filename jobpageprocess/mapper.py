@@ -33,10 +33,7 @@ class Mapper(object):
                 'name': 'Job Requirements',
                 'descriptions': []
             },
-
-
         }
-
         self.class_value_no_list = {
             'job-title': {
                 'name': 'Job Title',

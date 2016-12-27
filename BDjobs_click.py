@@ -5,7 +5,6 @@ from selenium import webdriver
 
 file = open('link.txt', 'a')
 
-
 def extract_links_from_pages(page):
     soup = BeautifulSoup(page, "html.parser")
 
