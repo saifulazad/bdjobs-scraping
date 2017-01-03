@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from data_analyzer.XLWritter import WritterXL
 
 from jobpageprocess import fetch_page
 from jobpageprocess import Reader
@@ -57,6 +58,8 @@ class Mapper(object):
             informations = self.soup.find(self.class_value_no_list[key]['tag'], attrs={'class': key})
 
             self.class_value_no_list[key]['info'] = informations.text.strip() # Store those as 'info' key
+
+        return [self.class_value_no_list[key]['info'] for key in self.class_value_no_list.keys()]
         return self.class_value_no_list
 
     def _read_job_des_and_req(self):
@@ -82,12 +85,14 @@ class Mapper(object):
         :return:
         """
         print(self._read_basic_info())
-        print(self._read_job_des_and_req())
+        # print(self._read_job_des_and_req())
+        return self._read_basic_info()
 
 
 val = (Reader('../link.txt').get_file_content())
-
-for x in val:
+xl_writter = WritterXL()
+for x in val[20:]:
+    print(x)
     page = fetch_page('http://jobs.bdjobs.com/' + x)
     ob = Mapper(page=page)
-    ob._read_from_HTML()
+    xl_writter.write_to_file(ob._read_from_HTML())
