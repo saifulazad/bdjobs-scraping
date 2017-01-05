@@ -14,7 +14,7 @@ After running that *BDjobs_click.py* you will see many links at link.txt file. Y
 
 ##How to start 
 * You can start by virtual env (optional)
-* python -m pip install -r requiriement.txt
+* `python -m pip install -r requiriement.txt`
 * Edit the config.py file provide PATH of your chrome driver 
 * run BDjobs_click.py
 
