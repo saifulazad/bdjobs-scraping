@@ -23,4 +23,4 @@ After running that *BDjobs_click.py* you will see many links at link.txt file. Y
 - [x] run selenium and extract the links
 - [x] run each link and scrape perticlar job
 - [ ] Write documentation 
-- [ ] this is an incomplete item
+- [ ] Analysis of data by Machine Learing 
