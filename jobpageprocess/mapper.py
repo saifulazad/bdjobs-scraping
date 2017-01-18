@@ -1,5 +1,8 @@
+import datetime
+
 from bs4 import BeautifulSoup
 from data_analyzer.XLWritter import WritterXL
+from dateUtil import get_today_file_name
 
 from jobpageprocess import fetch_page
 from jobpageprocess import Reader
@@ -85,14 +88,18 @@ class Mapper(object):
         :return:
         """
         print(self._read_basic_info())
-        # print(self._read_job_des_and_req())
+        print(self._read_job_des_and_req())
         return self._read_basic_info()
 
 
-val = (Reader('../link.txt').get_file_content())
-xl_writter = WritterXL()
-for x in val[20:]:
-    print(x)
-    page = fetch_page('http://jobs.bdjobs.com/' + x)
-    ob = Mapper(page=page)
-    xl_writter.write_to_file(ob._read_from_HTML())
+if __name__ == '__main__':
+
+    val = (Reader('../link.txt').get_file_content())
+    file_name = get_today_file_name().split('.')[0]
+    print(file_name+ ".xlsx")
+    xl_writter = WritterXL(file_name=file_name+ ".xlsx")
+    for x in val[0:]:
+        # print(x)
+        page = fetch_page('http://jobs.bdjobs.com/' + x)
+        ob = Mapper(page=page)
+        xl_writter.write_to_file(ob._read_from_HTML())

@@ -33,4 +33,5 @@ class Reader(object):
 
 if __name__ == "__main__":
     val = (Reader('../link.txt').get_file_content())
+    print(val)
 
