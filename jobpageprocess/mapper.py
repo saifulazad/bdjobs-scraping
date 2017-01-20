@@ -119,7 +119,8 @@ class Mapper(object):
 
 if __name__ == '__main__':
 
-    val = (Reader('../link.txt').get_file_content())
+    file_name = get_today_file_name()
+    val = (Reader('../'+ file_name).get_file_content())
     file_name = get_today_file_name().split('.')[0]
     print(file_name + ".xlsx")
     xl_writter = WritterXL(file_name=file_name + ".xlsx")

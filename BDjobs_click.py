@@ -11,17 +11,16 @@ from dateUtil import get_today_file_name
 
 file_name = get_today_file_name()
 # file_name = 'link.txt'
-file = open(file_name, 'w+')
 
 def extract_links_from_pages(page):
     soup = BeautifulSoup(page, "html.parser")
-
+    file = open(file_name, 'w+')
     p = soup.findAll('div', attrs={'class': 'job-title-text'})
     for link in p:
         val = link.find_all('a')[0]
         file.write(val.get('href') + '\n')
         print(val.get('href'))
-
+    file.close()
 
 try:
     for_windows = WindowsEnvironment()
