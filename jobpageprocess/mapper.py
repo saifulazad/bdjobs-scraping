@@ -37,6 +37,10 @@ class Mapper(object):
                 'name': 'Job Requirements',
                 'descriptions': []
             },
+            'oth_ben': {
+                'name': 'Other Benefits',
+                'descriptions': []
+            },
         }
         self.class_value_no_list = {
             'job-title': {
@@ -44,12 +48,18 @@ class Mapper(object):
                 'tag': 'h4'
             },
             'company-name': {
-                'name': 'Job Title',
+                'name': 'Company Name',
                 'tag': 'h2'
             },
+
+            'company-info': {
+                'name': 'Company Information',
+                'tag': 'div'
+            },
+
         }
 
-        self.soup = BeautifulSoup(page, "html.parser") # Consume HTML page from requests library
+        self.soup = BeautifulSoup(page, "html.parser")  # Consume HTML page from requests library
 
 
     def _read_basic_info(self):
@@ -60,10 +70,10 @@ class Mapper(object):
         for key in self.class_value_no_list:
             informations = self.soup.find(self.class_value_no_list[key]['tag'], attrs={'class': key})
 
-            self.class_value_no_list[key]['info'] = informations.text.strip() # Store those as 'info' key
+            self.class_value_no_list[key]['info'] = informations.text.strip()  # Store those as 'info' key
 
         return [self.class_value_no_list[key]['info'] for key in self.class_value_no_list.keys()]
-        return self.class_value_no_list
+        # return self.class_value_no_list
 
     def _read_job_des_and_req(self):
         """
@@ -71,12 +81,15 @@ class Mapper(object):
         :return dict: job description and responsibilities as key value
         """
         for key in self.class_value_has_list.keys():
-            informations = self.soup.findAll('div', attrs={'class': key})
-            for information in informations:
-                list_items = information.find('ul')
+            try:
+                informations = self.soup.findAll('div', attrs={'class': key})
+                for information in informations:
+                    list_items = information.find('ul')
 
-                for list_item in list_items.findAll('li'):
-                    self.class_value_has_list[key]['descriptions'].append(list_item.text.strip())
+                    for list_item in list_items.findAll('li'):
+                        self.class_value_has_list[key]['descriptions'].append(list_item.text.strip())
+            except:
+                pass
         return self.class_value_has_list
 
     def _read_from_HTML(self, path=None):
@@ -87,19 +100,32 @@ class Mapper(object):
         :param path:
         :return:
         """
-        print(self._read_basic_info())
+        # print(self._read_basic_info())
         print(self._read_job_des_and_req())
-        return self._read_basic_info()
+
+        all_list_info = self._read_job_des_and_req()
+        total_des = []
+        for key in self.class_value_has_list.keys():
+            description = all_list_info[key]['descriptions']
+            # print(description)
+            description.extend([''] * (100 - len(description)))
+            print(description)
+            total_des.extend(description)
+        basic_info_list = self._read_basic_info()
+
+        basic_info_list.extend(total_des)
+        return basic_info_list
 
 
 if __name__ == '__main__':
 
     val = (Reader('../link.txt').get_file_content())
     file_name = get_today_file_name().split('.')[0]
-    print(file_name+ ".xlsx")
-    xl_writter = WritterXL(file_name=file_name+ ".xlsx")
-    for x in val[0:]:
+    print(file_name + ".xlsx")
+    xl_writter = WritterXL(file_name=file_name + ".xlsx")
+    for x in val[20:]:
         # print(x)
         page = fetch_page('http://jobs.bdjobs.com/' + x)
         ob = Mapper(page=page)
+
         xl_writter.write_to_file(ob._read_from_HTML())

@@ -2,18 +2,15 @@ import datetime
 import sys
 
 from bs4 import BeautifulSoup
+from config import WindowsEnvironment
 from selenium import webdriver
 
 import config
 from dateUtil import get_today_file_name
-try:
-    config.init_path()
-except Exception as ex:
-    print(ex)
-    sys.exit()
+
 
 file_name = get_today_file_name()
-file_name = 'link.txt'
+# file_name = 'link.txt'
 file = open(file_name, 'w+')
 
 def extract_links_from_pages(page):
@@ -26,12 +23,18 @@ def extract_links_from_pages(page):
         print(val.get('href'))
 
 
-chrome_driver = config.PATH_WITH_DRIVER
+try:
+    for_windows = WindowsEnvironment()
+except Exception as ex:
+    print(ex)
+    sys.exit()
 
+
+chrome_driver = for_windows.get_path_with_driver()
 driver = webdriver.Chrome(chrome_driver)
 driver.get("http://jobs.bdjobs.com/jobsearch.asp?fcatId=8")
 extract_links_from_pages(driver.page_source)
-for x in range(2, 3):
+for x in range(2, 9):
     continue_link = driver.find_element_by_link_text(str(x))
     extract_links_from_pages(driver.page_source)
     continue_link.click()
