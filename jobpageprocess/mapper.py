@@ -123,7 +123,7 @@ if __name__ == '__main__':
     val = (Reader('../'+ file_name).get_file_content())
     file_name = get_today_file_name().split('.')[0]
     print(file_name + ".xlsx")
-    xl_writter = WritterXL(file_name=file_name + ".xlsx")
+    xl_writter = WritterXL(file_name='./xlsxs/'+file_name + ".xlsx")
     for x in val[20:]:
         # print(x)
         page = fetch_page('http://jobs.bdjobs.com/' + x)
