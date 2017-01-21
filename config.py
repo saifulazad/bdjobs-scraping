@@ -2,6 +2,15 @@ import platform
 import os
 
 
+
+
+
+CHROME_DRIVER_PATH = 'C:/chromedriver.exe'
+XLSX_PATH = '../xlsxs/'
+TXT_FILE_PATH = '../textfiles/'
+
+
+
 class Environment(object):
     """
     This is the function that will work to select driver based on OS ('Windows', 'Linux')

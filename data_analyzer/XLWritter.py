@@ -16,9 +16,9 @@ class WritterXL(object):
 
 
     def write_to_file(self, data):
-        print(data)
+
         self.ws.append(data)
-        self.wb.save("../"+ self.file_name)
+        self.wb.save(self.file_name)
 
     def read_from_file(self):
         return self.ws['B1'].value

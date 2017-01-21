@@ -1,6 +1,7 @@
 import datetime
 
 from bs4 import BeautifulSoup
+import config
 from data_analyzer.XLWritter import WritterXL
 from dateUtil import get_today_file_name
 
@@ -119,11 +120,14 @@ class Mapper(object):
 
 if __name__ == '__main__':
 
-    file_name = get_today_file_name()
-    val = (Reader('../'+ file_name).get_file_content())
+    txt_file_name = get_today_file_name()
+
+    read_file = config.TXT_FILE_PATH + txt_file_name
+
+    val = (Reader(file_name=read_file).get_file_content())
     file_name = get_today_file_name().split('.')[0]
-    print(file_name + ".xlsx")
-    xl_writter = WritterXL(file_name='./xlsxs/'+file_name + ".xlsx")
+    file_name = config.XLSX_PATH + file_name + ".xlsx"
+    xl_writter = WritterXL(file_name= file_name)
     for x in val[20:]:
         # print(x)
         page = fetch_page('http://jobs.bdjobs.com/' + x)

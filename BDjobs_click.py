@@ -14,7 +14,8 @@ file_name = get_today_file_name()
 
 def extract_links_from_pages(page):
     soup = BeautifulSoup(page, "html.parser")
-    file = open(file_name, 'w+')
+
+    file = open(config.TXT_FILE_PATH +file_name, 'w+')
     p = soup.findAll('div', attrs={'class': 'job-title-text'})
     for link in p:
         val = link.find_all('a')[0]
