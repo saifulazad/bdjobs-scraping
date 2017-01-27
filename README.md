@@ -27,12 +27,22 @@ After running that `BDjobs_click.py`.
 ##How to start 
 * You can start by virtual env (optional)
 * `python -m pip install -r requiriement.txt`
-* Edit the config.py file provide PATH of your chrome driver 
-* run `BDjobs_click.py`
+* Edit the config.py file provide PATH of your chrome driver
+  ⋅⋅* For windows our default path is C drive. So keep chrome driver at C: drive
+  ..* We are not still aware of linux now :( 
+* run `BDjobs_click.py` and wait a bit to complete the process 
+* There will be a txt file at txts folder named with ddmm.txt. 
+* If above process works good one can see many links on that page.
+* Then run the `mapper.py` located on jobprocess package.
+* After that at xlxs folder you will get an xls file will job info
+
 
   
 ###TODOs
 - [x] run selenium and extract the links
 - [x] run each link and scrape perticlar job
 - [x] Write documentation 
-- [ ] Analysis of data by Machine Learing 
+- [ ] Analysis of data by Machine Learing
+
+###Contact 
+
