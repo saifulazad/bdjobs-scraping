@@ -1,6 +1,7 @@
 # bdjobs-scraping
 ##Introduction 
-Scraping is a hot topic now a days. This is a demo about my scpaing skill
+Scraping is a hot topic now a days. This is a demo about my scpaing skill.We are trying to do scraping 
+all currernt job from bdjobs.com . Our main goal scrape all data about current job and analysis them.
 
 ##How does it work:
 
