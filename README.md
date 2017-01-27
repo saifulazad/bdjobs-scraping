@@ -30,10 +30,8 @@ After running that `BDjobs_click.py`.
 * You can start by virtual env (optional)
 * `python -m pip install -r requiriement.txt`
 * Edit the config.py file provide PATH of your chrome driver
-
-  For windows our default path is C drive. So keep chrome driver at C: drive
-  
-  We are not still aware of linux now :(
+  * For windows our default path is C drive. So keep chrome driver at C: drive
+  * We are not still aware of linux now :(
 * run `BDjobs_click.py` and wait a bit to complete the process 
 * There will be a txt file at txts folder named with ddmm.txt. 
 * If above process works good one can see many links on that page.
