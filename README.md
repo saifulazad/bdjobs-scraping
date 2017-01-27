@@ -20,7 +20,7 @@ After running that *BDjobs_click.py* you will see many links at link.txt file. Y
 * run BDjobs_click.py
 
   
-##TODOs
+###TODOs
 - [x] run selenium and extract the links
 - [x] run each link and scrape perticlar job
 - [ ] Write documentation 
