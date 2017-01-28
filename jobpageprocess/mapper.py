@@ -1,6 +1,6 @@
-import datetime
-
 from bs4 import BeautifulSoup
+
+
 import config
 from data_analyzer.XLWritter import WritterXL
 from dateUtil import get_today_file_name
