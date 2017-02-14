@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 
-
 import config
 from data_analyzer.XLWritter import WritterXL
 from dateUtil import get_today_file_name
@@ -125,11 +124,13 @@ if __name__ == '__main__':
     read_file = config.TXT_FILE_PATH + txt_file_name
 
     val = (Reader(file_name=read_file).get_file_content())
+
+    print(val)
     file_name = get_today_file_name().split('.')[0]
     file_name = config.XLSX_PATH + file_name + ".xlsx"
-    xl_writter = WritterXL(file_name= file_name)
+    xl_writter = WritterXL(file_name=file_name)
     for x in val[20:]:
-        # print(x)
+        print(x)
         page = fetch_page('http://jobs.bdjobs.com/' + x)
         ob = Mapper(page=page)
 
