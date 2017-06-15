@@ -1,7 +1,9 @@
 from bs4 import BeautifulSoup
 
+from firebase import firebase
+
 import config
-from data_analyzer.XLWritter import WritterXL
+from fire_base_config import CONFIG
 from dateUtil import get_today_file_name
 
 from jobpageprocess import fetch_page
@@ -69,11 +71,10 @@ class Mapper(object):
         """
         for key in self.class_value_no_list:
             informations = self.soup.find(self.class_value_no_list[key]['tag'], attrs={'class': key})
-
             self.class_value_no_list[key]['info'] = informations.text.strip()  # Store those as 'info' key
-
-        return [self.class_value_no_list[key]['info'] for key in self.class_value_no_list.keys()]
-        # return self.class_value_no_list
+            del self.class_value_no_list[key]['tag']
+            del self.class_value_no_list[key]['name']
+        return self.class_value_no_list
 
     def _read_job_des_and_req(self):
         """
@@ -100,38 +101,23 @@ class Mapper(object):
         :param path:
         :return:
         """
-        # print(self._read_basic_info())
-        print(self._read_job_des_and_req())
 
         all_list_info = self._read_job_des_and_req()
-        total_des = []
-        for key in self.class_value_has_list.keys():
-            description = all_list_info[key]['descriptions']
-            # print(description)
-            description.extend([''] * (100 - len(description)))
-            print(description)
-            total_des.extend(description)
-        basic_info_list = self._read_basic_info()
 
-        basic_info_list.extend(total_des)
-        return basic_info_list
+        basic_info_list = self._read_basic_info()
+        return {**all_list_info, **basic_info_list}
 
 
 if __name__ == '__main__':
 
     txt_file_name = get_today_file_name()
-
+    firebase = firebase.FirebaseApplication(CONFIG['URL'], None)
     read_file = config.TXT_FILE_PATH + txt_file_name
 
     val = (Reader(file_name=read_file).get_file_content())
-
-    print(val)
     file_name = get_today_file_name().split('.')[0]
-    file_name = config.XLSX_PATH + file_name + ".xlsx"
-    xl_writter = WritterXL(file_name=file_name)
     for x in val[20:]:
-        print(x)
+        job_id = (x.split('id=')[1].split('&')[0])
         page = fetch_page('http://jobs.bdjobs.com/' + x)
         ob = Mapper(page=page)
-
-        xl_writter.write_to_file(ob._read_from_HTML())
+        firebase.put('/job/',job_id ,(ob._read_from_HTML()))

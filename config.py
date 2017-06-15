@@ -5,7 +5,7 @@ import os
 
 
 
-CHROME_DRIVER_PATH = 'C:/chromedriver.exe'
+CHROME_DRIVER_PATH = './chromedriver'
 XLSX_PATH = '../xlsxs/'
 TXT_FILE_PATH = '../textfiles/'
 
