@@ -121,3 +121,4 @@ if __name__ == '__main__':
         page = fetch_page('http://jobs.bdjobs.com/' + x)
         ob = Mapper(page=page)
         firebase.put('/job/',job_id ,(ob._read_from_HTML()))
+        print(job_id)
