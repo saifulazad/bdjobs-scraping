@@ -2,7 +2,7 @@ import datetime
 import sys
 
 from bs4 import BeautifulSoup
-from config import WindowsEnvironment
+from config import WindowsEnvironment, CHROME_DRIVER_PATH
 from selenium import webdriver
 
 import config
@@ -30,11 +30,11 @@ except Exception as ex:
     sys.exit()
 
 
-chrome_driver = for_windows.get_path_with_driver()
+chrome_driver = CHROME_DRIVER_PATH
 driver = webdriver.Chrome(chrome_driver)
 driver.get("http://jobs.bdjobs.com/jobsearch.asp?fcatId=8")
 extract_links_from_pages(driver.page_source)
-for x in range(2, 4):
+for x in range(1, 7):
     continue_link = driver.find_element_by_link_text(str(x))
     extract_links_from_pages(driver.page_source)
     continue_link.click()
