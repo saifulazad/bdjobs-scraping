@@ -1,11 +1,13 @@
 import csv
+import os
 
-with open('tags.csv', 'r') as f:
+dir_path = os.path.dirname(os.path.realpath(__file__))
+with open(dir_path+'/tags.csv', 'r') as f:
     reader = csv.reader(f)
 
     tags_rating = list(reader)
 
-with open('./words.txt') as word_dictionary:
+with open(dir_path+'/words.txt') as word_dictionary:
     dict_words = {x.rstrip().lower() for x in word_dictionary.readlines()}
 
 tags = {tag for (tag, _) in tags_rating}

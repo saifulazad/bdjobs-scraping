@@ -1,11 +1,10 @@
-import datetime
+
 import sys
 
 from bs4 import BeautifulSoup
 from config import WindowsEnvironment, CHROME_DRIVER_PATH
 from selenium import webdriver
 
-import config
 from dateUtil import get_today_file_name
 
 
