@@ -35,22 +35,24 @@ def read_company_info(data, file_to_save=None):
         print({**info_basic, **meta_data, 'tech_stacks':
             get_tech_stack(data[key], format='dict')})
     if file_to_save:
-        with open(file_to_save+'.txt', 'w') as outfile:
+        with open(file_to_save + '.txt', 'w') as outfile:
             json.dump(jobs, outfile)
 
-def get_tech_stack(data, format= 'dict'):
+
+def get_tech_stack(data, format='dict'):
     job_des_req = get_job_des_and_requirements(data)
 
-    word_set = (make_tuple_to_works_set(job_des_req['job_req_and_des']))
+    word_set = (make_tuple_to_words_set(job_des_req['job_req_and_des']))
 
     non_dict_word = get_non_dict_word(word_set)
 
-    only_tag =  non_dict_word & tags
+    only_tag = non_dict_word & tags
 
     if format == 'dict':
         return [{'tag_name': tag} for tag in only_tag]
     else:
         return only_tag
+
 
 def get_job_des_and_requirements(data):
     descriptions = tuple()
@@ -67,7 +69,7 @@ def get_job_des_and_requirements(data):
     except KeyError as ex:
         print("----------------ERROR START---------------")
         print(data)
-        print("Has no key {0} or {1}".format('job_des', 'descriptions'))
+        print("Has no key {0} or {1}".format('job_req', 'descriptions'))
         print("----------------ERROR END ---------------")
 
     return {
@@ -77,7 +79,7 @@ def get_job_des_and_requirements(data):
     }
 
 
-def make_tuple_to_works_set(data_tuple):
+def make_tuple_to_words_set(data_tuple):
     lam = lambda x: re.split(r'[\W]', x)
     words_set = set()
     for sentance in data_tuple:
@@ -88,13 +90,15 @@ def make_tuple_to_works_set(data_tuple):
     return words_set
 
 
-with open('./portfolio-6f471-export.json') as data_file:
-    data_string = data_file.read()
-    try:
-        data = json.loads(data_string)
-        # print('Success!')
-    except ValueError:
+if __name__ == '__main__':
 
-        print('Failed:')
+    with open('./portfolio-6f471-export.json') as data_file:
+        data_string = data_file.read()
+        try:
+            data = json.loads(data_string)
+            # print('Success!')
+        except ValueError:
 
-read_company_info(data=data['job'], file_to_save='jobs')
+            print('Failed:')
+
+    read_company_info(data=data['job'], file_to_save='jobs')
