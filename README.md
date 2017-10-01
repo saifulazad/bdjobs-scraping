@@ -29,6 +29,7 @@ Scraping is a hot topic nowadays. This is a demo about my scraping skill. [bdjob
 
 * Clone the project 
 * Open terminal then `cd bdjobs-scraping` and hit Enter    
+* Download [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/). Make sure it matches with your current chrome browser version
 * You can start by virtual env (optional)
 * At terminal `python -m pip install -r requiriement.txt`
 * Edit the config.py file provide PATH of your chrome driver
