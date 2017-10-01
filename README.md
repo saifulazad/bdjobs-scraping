@@ -29,17 +29,15 @@ Scraping is a hot topic nowadays. This is a demo about my scraping skill. [bdjob
 
 * Clone the project 
 * Open terminal then `cd bdjobs-scraping` and hit Enter    
-* Download [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/). Make sure it matches with your current chrome browser version
+* Download [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/) in project root folder. Make sure it matches with your current chrome browser version
 * You can start by virtual env (optional)
 * At terminal `python -m pip install -r requiriement.txt`
 * Edit the config.py file provide PATH of your chrome driver
   * For windows, our default path is C drive. So keep chrome driver at C: drive
-  * We are not still aware of Linux now :(
 * run `BDjobs_click.py` and wait a bit to complete the process 
 * There will be a txt file at *textfiles* folder named with ddmm.txt. 
 * If above process works good one can see many links on that page.
 * Then run the `mapper.py` located on *jobpageprocess* package.
-* After that at *xlsxs* folder you will get an xls file will job info
 
 
   
