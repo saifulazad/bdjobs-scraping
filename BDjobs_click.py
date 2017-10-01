@@ -2,7 +2,7 @@
 import sys
 
 from bs4 import BeautifulSoup
-from config import WindowsEnvironment, CHROME_DRIVER_PATH
+from config import CHROME_DRIVER_PATH
 from selenium import webdriver
 
 from dateUtil import get_today_file_name
@@ -20,13 +20,6 @@ def extract_links_from_pages(page):
         val = link.find_all('a')[0]
         file.write(val.get('href') + '\n')
         print(val.get('href'))
-
-
-try:
-    for_windows = WindowsEnvironment()
-except Exception as ex:
-    print(ex)
-    sys.exit()
 
 
 chrome_driver = CHROME_DRIVER_PATH
