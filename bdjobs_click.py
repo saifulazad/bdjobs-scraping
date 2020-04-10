@@ -3,8 +3,15 @@ from bs4 import BeautifulSoup
 from config import CHROME_DRIVER_PATH
 from dateUtil import get_today_file_name
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
+options = Options()
+options.binary_location = "/usr/bin/google-chrome1"
+driver = webdriver.Chrome(chrome_options = options, executable_path=r'C:\path\to\chromedriver.exe')
+driver.get('http://google.com/')
 file_name = get_today_file_name()
+
+
 # file_name = 'link.txt'
 FILE_PATH = './textfiles/'
 
