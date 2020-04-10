@@ -3,17 +3,16 @@ from bs4 import BeautifulSoup
 from config import CHROME_DRIVER_PATH
 from dateUtil import get_today_file_name
 from selenium import webdriver
+from upload_file_s3 import upload_file
 from selenium.webdriver.chrome.options import Options
-
-options = Options()
-options.binary_location = "/usr/bin/google-chrome1"
-driver = webdriver.Chrome(chrome_options = options, executable_path=r'C:\path\to\chromedriver.exe')
-driver.get('http://google.com/')
 file_name = get_today_file_name()
 
+options = webdriver.ChromeOptions()
+options.add_experimental_option("excludeSwitches",["ignore-certificate-errors"])
+options.add_argument('--disable-gpu')
+options.add_argument('--headless')
 
-# file_name = 'link.txt'
-FILE_PATH = './textfiles/'
+FILE_PATH = 'textfiles/'
 
 
 def extract_links_from_pages(page):
@@ -27,14 +26,15 @@ def extract_links_from_pages(page):
 
 
 chrome_driver = CHROME_DRIVER_PATH
-driver = webdriver.Chrome(chrome_driver)
+driver = webdriver.Chrome(chrome_driver, chrome_options= options)
 driver.get("http://jobs.bdjobs.com/jobsearch.asp?fcatId=8")
 extract_links_from_pages(driver.page_source)
 import time
-for x in range(1, 12):
+for x in range(1, 5):
     time.sleep(10)
     continue_link = driver.find_element_by_link_text(str(x))
     extract_links_from_pages(driver.page_source)
     continue_link.click()
 
 driver.quit()
+upload_file(FILE_PATH + file_name)
