@@ -1,4 +1,4 @@
-
+#!/usr/bin/env /home/ubuntu/bdjobs-scraping/venv/bin/python
 from bs4 import BeautifulSoup
 from config import CHROME_DRIVER_PATH
 from dateUtil import get_today_file_name
