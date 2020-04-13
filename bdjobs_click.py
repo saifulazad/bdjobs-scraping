@@ -1,5 +1,6 @@
-#!/usr/bin/env /home/ubuntu/bdjobs-scraping/venv/bin/python
+#!/usr/bin/env python
 from bs4 import BeautifulSoup
+import os
 from config import CHROME_DRIVER_PATH
 from dateUtil import get_today_file_name
 from selenium import webdriver
@@ -11,7 +12,9 @@ options.add_experimental_option("excludeSwitches",["ignore-certificate-errors"])
 options.add_argument('--disable-gpu')
 options.add_argument('--headless')
 
-FILE_PATH = 'textfiles/'
+root = os.path.dirname(__file__)
+
+FILE_PATH = os.path.join(root, 'textfiles')
 
 
 def extract_links_from_pages(page):
