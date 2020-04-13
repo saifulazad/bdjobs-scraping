@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 from bs4 import BeautifulSoup
 import os
 from config import CHROME_DRIVER_PATH
@@ -39,4 +39,4 @@ for x in range(1, 5):
     continue_link.click()
 
 driver.quit()
-upload_file(os.path.join('textfiles',file_name))
+upload_file(file_name)
