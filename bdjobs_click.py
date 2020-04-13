@@ -39,4 +39,4 @@ for x in range(1, 5):
     continue_link.click()
 
 driver.quit()
-upload_file(file_name)
+upload_file(os.path.join(root, file_name))
