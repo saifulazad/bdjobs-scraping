@@ -1,7 +1,5 @@
 from bs4 import BeautifulSoup
 
-from jobpageprocess import fetch_page
-
 
 class Mapper(object):
     """
@@ -99,9 +97,3 @@ class Mapper(object):
 
         basic_info_list = self._read_basic_info()
         return {**all_list_info, **basic_info_list}
-
-
-if __name__ == '__main__':
-    page = fetch_page('https://jobs.bdjobs.com/jobdetails.asp?id=904199&fcatId=8&ln=1')
-    ob = Mapper(page=page)
-    print(ob._read_from_HTML())

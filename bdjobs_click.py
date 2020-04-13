@@ -4,7 +4,6 @@ from config import CHROME_DRIVER_PATH
 from dateUtil import get_today_file_name
 from selenium import webdriver
 from upload_file_s3 import upload_file
-from selenium.webdriver.chrome.options import Options
 file_name = get_today_file_name()
 
 options = webdriver.ChromeOptions()
