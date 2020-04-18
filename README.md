@@ -8,6 +8,7 @@ Scraping is a hot topic nowadays. This is a demo about my scraping skill. [bdjob
 * Beautifulsoup
 * requests 
 * selenium
+* boto3
 
 ## How does it work:
 
@@ -39,7 +40,10 @@ Scraping is a hot topic nowadays. This is a demo about my scraping skill. [bdjob
 * If above process works good one can see many links on that page.
 * Then run the `mapper.py` located on *jobpageprocess* package.
 
+## How to set crontab
 
+ * `0 0 */7 * *` run after 7 Days at 12:00
+ * after set crontab need to restart cron server use `sudo service cron reload` in ubuntu.
   
 ### TODOs
 - [x] run selenium and extract the links

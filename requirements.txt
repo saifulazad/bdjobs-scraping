@@ -4,3 +4,4 @@ python-firebase==1.2
 requests==2.21.0
 selenium==3.0.2
 six==1.10.0
+pytest
