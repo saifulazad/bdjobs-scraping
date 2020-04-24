@@ -54,12 +54,7 @@ class Mapper(object):
 
         self.soup = BeautifulSoup(page, "html.parser")  # Consume HTML page from requests library
 
-
     def _read_basic_info(self):
-        """
-        Read all basic information of a Job. job title and company name is vital
-        :return dict: job title and company name as key value
-        """
         for key in self.class_value_no_list:
             informations = self.soup.find(self.class_value_no_list[key]['tag'], attrs={'class': key})
             self.class_value_no_list[key]['info'] = informations.text.strip()  # Store those as 'info' key
@@ -68,10 +63,6 @@ class Mapper(object):
         return self.class_value_no_list
 
     def _read_job_des_and_req(self):
-        """
-        A job has some description and responsibilities. Extract it for HTML page
-        :return dict: job description and responsibilities as key value
-        """
         for key in self.class_value_has_list.keys():
             try:
                 informations = self.soup.findAll('div', attrs={'class': key})
