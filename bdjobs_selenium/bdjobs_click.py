@@ -1,10 +1,23 @@
 #!/usr/bin/python
-from bs4 import BeautifulSoup
 import os
 import time
-from dateUtil import get_today_file_name
+
+import boto3
+from bs4 import BeautifulSoup
 from selenium import webdriver
-from upload_file_s3 import upload_file
+
+from dateUtil import get_today_file_name
+
+BUCKET_NAME = 'jobstext'
+
+
+def upload_file(file_name):
+    s3 = boto3.client('s3')
+    key = os.path.join('joblinksfile', os.path.basename(file_name))
+    try:
+        s3_response = s3.put_object(Bucket=BUCKET_NAME, Key=key, Body=open(file_name, 'rb'))
+    except Exception as e:
+        raise IOError(e)
 
 
 root = os.path.dirname(__file__)
@@ -12,7 +25,6 @@ chrome_driver = os.path.join(root, 'chromedriver')
 links_path = os.path.join(root, 'textfiles')
 file_name = get_today_file_name()
 file_to_write = os.path.join(links_path, file_name)
-
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])
@@ -33,9 +45,10 @@ def extract_links_from_pages(page):
         file.write(val.get('href') + '\n')
         print(val.get('href'))
 
-for x in range(1, 5):
-    time.sleep(10)
+
+for x in range(1, 4):
     continue_link = driver.find_element_by_link_text(str(x))
+    time.sleep(10)
     extract_links_from_pages(driver.page_source)
     continue_link.click()
 

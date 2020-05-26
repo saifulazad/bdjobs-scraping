@@ -1,5 +1,6 @@
 __author__ = 'Azad'
 
+
 class Writter(object):
     pass
 
@@ -8,6 +9,7 @@ class Reader(object):
     """
     This is Reader class to read and process a .txt file and return URLS a list
     """
+
     def __init__(self, file_name):
         """
 
@@ -31,7 +33,7 @@ class Reader(object):
 
         return urls
 
+
 if __name__ == "__main__":
     val = (Reader('../link.txt').get_file_content())
     print(val)
-

@@ -43,7 +43,8 @@ Scraping is a hot topic nowadays. This is a demo about my scraping skill. [bdjob
 ## How to set crontab
 
  * `0 0 */7 * *` run after 7 Days at 12:00
- * after set crontab need to restart cron server use `sudo service cron reload` in ubuntu.
+ * after set cron need to restart cron server use `sudo service cron reload` in ubuntu.
+ * 0 0 * * * /usr/bin/python /var/www/html/crontest/cron.py >>/dev/null 2>&1
   
 ### TODOs
 - [x] run selenium and extract the links
