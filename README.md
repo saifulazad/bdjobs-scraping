@@ -1,5 +1,5 @@
 
-# bdjobs-scraping [DO NOT FOLLOW IT NOW]
+# bdjobs-scraping 
 ## Introduction 
 Scraping is a hot topic nowadays. This is a demo about my scraping skill. [bdjobs](http://jobs.bdjobs.com/jobsearch.asp?fcatId=8) is the largest job posting site in Bangladesh. We are only concern on IT-related jobs.
 
@@ -10,7 +10,7 @@ Scraping is a hot topic nowadays. This is a demo about my scraping skill. [bdjob
 * selenium
 * boto3
 
-## How does it work:
+## How does it work: [DO NOT FOLLOW IT NOW]
 
 * Run `BDjobs_click.py`. 
 
@@ -26,7 +26,7 @@ Scraping is a hot topic nowadays. This is a demo about my scraping skill. [bdjob
 
 * After getting page we parse it and extract all useful info from that page.
 
-## How to start 
+## How to start [DO NOT FOLLOW IT NOW]
 
 * Clone the project 
 * Open terminal then `cd bdjobs-scraping` and hit Enter    
